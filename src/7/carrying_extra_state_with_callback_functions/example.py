@@ -2,6 +2,7 @@
 # through callback functions.   To test the examples, this very
 # simple code emulates the typical control of a callback.
 
+
 def apply_async(func, args, *, callback):
     # Compute the result
     result = func(*args)
@@ -10,12 +11,15 @@ def apply_async(func, args, *, callback):
     callback(result)
 
 # A simple function for testing
+
+
 def add(x, y):
     return x + y
 
 # (a) A simple callback example
 
 print('# --- Simple Example')
+
 
 def print_result(result):
     print("Got:", result)
@@ -27,9 +31,12 @@ apply_async(add, ('hello', 'world'), callback=print_result)
 
 print('# --- Using a bound-method')
 
+
 class ResultHandler:
+
     def __init__(self):
         self.sequence = 0
+
     def handler(self, result):
         self.sequence += 1
         print('[{}] Got: {}'.format(self.sequence, result))
@@ -42,8 +49,10 @@ apply_async(add, ('hello', 'world'), callback=r.handler)
 
 print('# --- Using a closure')
 
+
 def make_handler():
     sequence = 0
+
     def handler(result):
         nonlocal sequence
         sequence += 1
@@ -58,6 +67,7 @@ apply_async(add, ('hello', 'world'), callback=handler)
 # (d) Using a coroutine
 
 print('# --- Using a coroutine')
+
 
 def make_handler():
     sequence = 0
@@ -76,9 +86,12 @@ apply_async(add, ('hello', 'world'), callback=handler.send)
 
 print('# --- Using partial')
 
+
 class SequenceNo:
+
     def __init__(self):
         self.sequence = 0
+
 
 def handler(result, seq):
     seq.sequence += 1
@@ -89,5 +102,3 @@ from functools import partial
 
 apply_async(add, (2, 3), callback=partial(handler, seq=seq))
 apply_async(add, ('hello', 'world'), callback=partial(handler, seq=seq))
-
-

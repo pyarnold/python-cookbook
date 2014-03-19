@@ -4,6 +4,7 @@ import multiprocessing
 from multiprocessing.reduction import recv_handle, send_handle
 import socket
 
+
 def worker(in_p, out_p):
     out_p.close()
     while True:
@@ -17,6 +18,7 @@ def worker(in_p, out_p):
                 print('CHILD: RECV {!r}'.format(msg))
                 s.send(msg)
 
+
 def server(address, in_p, out_p, worker_pid):
     in_p.close()
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -28,14 +30,14 @@ def server(address, in_p, out_p, worker_pid):
         print('SERVER: Got connection from', addr)
         send_handle(out_p, client.fileno(), worker_pid)
         client.close()
-    
+
 if __name__ == '__main__':
     c1, c2 = multiprocessing.Pipe()
-    worker_p = multiprocessing.Process(target=worker, args=(c1,c2))
+    worker_p = multiprocessing.Process(target=worker, args=(c1, c2))
     worker_p.start()
 
-    server_p = multiprocessing.Process(target=server, 
-                  args=(('', 15000), c1, c2, worker_p.pid))
+    server_p = multiprocessing.Process(target=server,
+                                       args=(('', 15000), c1, c2, worker_p.pid))
     server_p.start()
 
     c1.close()

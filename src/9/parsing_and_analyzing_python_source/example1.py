@@ -1,10 +1,13 @@
 import ast
 
+
 class CodeAnalyzer(ast.NodeVisitor):
+
     def __init__(self):
         self.loaded = set()
         self.stored = set()
         self.deleted = set()
+
     def visit_Name(self, node):
         if isinstance(node.ctx, ast.Load):
             self.loaded.add(node.id)

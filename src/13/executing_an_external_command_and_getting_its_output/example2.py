@@ -9,12 +9,11 @@ goodbye
 
 # Launch a command with pipes
 p = subprocess.Popen(['wc'],
-          stdout = subprocess.PIPE,
-          stdin = subprocess.PIPE)
+                     stdout=subprocess.PIPE,
+                     stdin=subprocess.PIPE)
 
 # Send the data and get the output
 stdout, stderr = p.communicate(text)
 
 text = stdout.decode('utf-8')
 print(text)
-

@@ -27,4 +27,3 @@ print("Reading text as ASCII with ignore error handling")
 with open('sample.txt', 'rt', encoding='ascii', errors='ignore') as f:
     for line in f:
         print(repr(line))
-

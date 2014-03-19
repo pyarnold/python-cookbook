@@ -53,17 +53,12 @@ with open('stocks.csv') as f:
 
 print('Reading as dicts with type conversion')
 
-field_types = [ ('Price', float),
-                ('Change', float),
-                ('Volume', int) ]
+field_types = [('Price', float),
+               ('Change', float),
+               ('Volume', int)]
 
 with open('stocks.csv') as f:
     for row in csv.DictReader(f):
-        row.update((key, conversion(row[key])) 
+        row.update((key, conversion(row[key]))
                    for key, conversion in field_types)
         print(row)
-
-        
-
-
-

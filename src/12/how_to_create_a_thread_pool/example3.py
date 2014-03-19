@@ -1,6 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor
 import urllib.request
 
+
 def fetch_url(url):
     u = urllib.request.urlopen(url)
     data = u.read()

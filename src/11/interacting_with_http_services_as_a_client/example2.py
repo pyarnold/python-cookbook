@@ -2,13 +2,13 @@
 
 from urllib import request, parse
 
-# Base URL being accessed 
+# Base URL being accessed
 url = 'http://httpbin.org/post'
 
 # Dictionary of query parameters (if any)
 parms = {
-   'name1' : 'value1',
-   'name2' : 'value2'
+    'name1': 'value1',
+    'name2': 'value2'
 }
 
 # Encode the query string
@@ -23,4 +23,3 @@ from pprint import pprint
 
 json_resp = json.loads(resp.decode('utf-8'))
 pprint(json_resp)
-

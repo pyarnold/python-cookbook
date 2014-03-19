@@ -1,4 +1,5 @@
 class EventHandler:
+
     def fileno(self):
         'Return the associated file descriptor'
         raise NotImplemented('must implement')
@@ -12,7 +13,7 @@ class EventHandler:
         pass
 
     def wants_to_send(self):
-        'Return True if sending is requested' 
+        'Return True if sending is requested'
         return False
 
     def handle_send(self):
@@ -20,6 +21,7 @@ class EventHandler:
         pass
 
 import select
+
 
 def event_loop(handlers):
     while True:

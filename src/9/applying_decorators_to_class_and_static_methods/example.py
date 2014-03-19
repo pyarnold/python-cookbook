@@ -2,18 +2,23 @@ import time
 from functools import wraps
 
 # A simple decorator
+
+
 def timethis(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         start = time.time()
         r = func(*args, **kwargs)
         end = time.time()
-        print(end-start)
+        print(end - start)
         return r
     return wrapper
 
 # Class illustrating application of the decorator to different kinds of methods
+
+
 class Spam:
+
     @timethis
     def instance_method(self, n):
         print(self, n)

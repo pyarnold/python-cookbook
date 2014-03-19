@@ -22,7 +22,7 @@ print(pos_clip)
 
 addresses = [
     '5412 N CLARK',
-    '5148 N CLARK', 
+    '5148 N CLARK',
     '5800 E 58TH',
     '2122 N CLARK',
     '5645 N RAVENSWOOD',
@@ -31,13 +31,10 @@ addresses = [
     '1039 W GRANVILLE',
 ]
 
-counts = [ 0, 3, 10, 4, 1, 7, 6, 1]
+counts = [0, 3, 10, 4, 1, 7, 6, 1]
 
 from itertools import compress
 
-more5 = [ n > 5 for n in counts ]
+more5 = [n > 5 for n in counts]
 a = list(compress(addresses, more5))
 print(a)
-
-
-

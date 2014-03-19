@@ -2,10 +2,12 @@ import queue
 import socket
 import os
 
+
 class PollableQueue(queue.Queue):
+
     def __init__(self):
         super().__init__()
-        # Create a pair of connected sockets        
+        # Create a pair of connected sockets
         if os.name == 'posix':
             self._putsocket, self._getsocket = socket.socketpair()
         else:
@@ -41,7 +43,7 @@ if __name__ == '__main__':
         Consumer that reads data on multiple queues simultaneously
         '''
         while True:
-            can_read, _, _ = select.select(queues,[],[])
+            can_read, _, _ = select.select(queues, [], [])
             for r in can_read:
                 item = r.get()
                 print('Got:', item)
@@ -49,7 +51,7 @@ if __name__ == '__main__':
     q1 = PollableQueue()
     q2 = PollableQueue()
     q3 = PollableQueue()
-    t = threading.Thread(target=consumer, args=([q1,q2,q3],))
+    t = threading.Thread(target=consumer, args=([q1, q2, q3],))
     t.daemon = True
     t.start()
 

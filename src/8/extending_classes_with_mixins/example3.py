@@ -1,5 +1,6 @@
 # Class decorator alternative to mixins
 
+
 def LoggedMapping(cls):
     cls_getitem = cls.__getitem__
     cls_setitem = cls.__setitem__
@@ -21,6 +22,7 @@ def LoggedMapping(cls):
     cls.__setitem__ = __setitem__
     cls.__delitem__ = __delitem__
     return cls
+
 
 @LoggedMapping
 class LoggedDict(dict):

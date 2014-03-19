@@ -2,7 +2,9 @@
 #
 # Singleton
 
+
 class Singleton(type):
+
     def __init__(self, *args, **kwargs):
         self.__instance = None
         super().__init__(*args, **kwargs)
@@ -14,7 +16,9 @@ class Singleton(type):
         else:
             return self.__instance
 
+
 class Spam(metaclass=Singleton):
+
     def __init__(self):
         print('Creating Spam')
 
@@ -22,4 +26,3 @@ if __name__ == '__main__':
     a = Spam()
     b = Spam()
     print(a is b)
-

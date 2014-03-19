@@ -1,6 +1,7 @@
 from inspect import signature
 from functools import wraps
 
+
 def typeassert(*ty_args, **ty_kwargs):
     def decorate(func):
         # If in optimized mode, disable type checking
@@ -19,24 +20,27 @@ def typeassert(*ty_args, **ty_kwargs):
                 if name in bound_types:
                     if not isinstance(value, bound_types[name]):
                         raise TypeError(
-                            'Argument {} must be {}'.format(name, bound_types[name])
-                            )
+                            'Argument {} must be {}'.format(
+                                name, bound_types[name])
+                        )
             return func(*args, **kwargs)
         return wrapper
     return decorate
 
 # Examples
 
+
 @typeassert(int, int)
 def add(x, y):
     return x + y
+
 
 @typeassert(int, z=int)
 def spam(x, y, z=42):
     print(x, y, z)
 
 if __name__ == '__main__':
-    print(add(2,3))
+    print(add(2, 3))
     try:
         add(2, 'hello')
     except TypeError as e:
@@ -48,4 +52,3 @@ if __name__ == '__main__':
         spam(1, 'hello', 'world')
     except TypeError as e:
         print(e)
-

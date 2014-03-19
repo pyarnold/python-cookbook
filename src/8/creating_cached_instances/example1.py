@@ -1,12 +1,15 @@
 # Simple example
 
+
 class Spam:
+
     def __init__(self, name):
         self.name = name
 
 # Caching support
 import weakref
 _spam_cache = weakref.WeakValueDictionary()
+
 
 def get_spam(name):
     if name not in _spam_cache:
@@ -22,5 +25,3 @@ if __name__ == '__main__':
     print('a is b:', a is b)
     c = get_spam('foo')
     print('a is c:', a is c)
-
-

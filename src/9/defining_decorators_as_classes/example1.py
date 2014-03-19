@@ -1,8 +1,10 @@
 # Example of defining a decorator as a class
 import types
 from functools import wraps
-       
+
+
 class Profiled:
+
     def __init__(self, func):
         wraps(func)(self)
         self.ncalls = 0
@@ -19,18 +21,21 @@ class Profiled:
 
 # Example
 
+
 @Profiled
 def add(x, y):
     return x + y
 
+
 class Spam:
+
     @Profiled
     def bar(self, x):
         print(self, x)
 
 if __name__ == '__main__':
-    print(add(2,3))
-    print(add(4,5))
+    print(add(2, 3))
+    print(add(4, 5))
     print('ncalls:', add.ncalls)
 
     s = Spam()

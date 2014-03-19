@@ -1,7 +1,10 @@
 # Example of calling methods by name
 
 import math
+
+
 class Point:
+
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -12,7 +15,7 @@ class Point:
     def distance(self, x, y):
         return math.hypot(self.x - x, self.y - y)
 
-p = Point(2,3)
+p = Point(2, 3)
 
 # Method 1 : Use getattr
 d = getattr(p, 'distance')(0, 0)     # Calls p.distance(0, 0)
@@ -37,4 +40,3 @@ points = [
 points.sort(key=operator.methodcaller('distance', 0, 0))
 for p in points:
     print(p)
-

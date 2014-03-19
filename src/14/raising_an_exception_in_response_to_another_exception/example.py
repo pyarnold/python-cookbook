@@ -3,6 +3,7 @@
 # Example 1:   Explicit chaining.  Use this whenever your
 # intent is to raise a new exception in response to another
 
+
 def example1():
     try:
         int('N/A')
@@ -12,6 +13,7 @@ def example1():
 # Example 2:  Implicit chaining.  This occurs if there's an
 # unexpected exception in the except block.
 
+
 def example2():
     try:
         int('N/A')
@@ -19,6 +21,8 @@ def example2():
         print('It failed. Reason:', err)   # Intentional error
 
 # Example 3: Discarding the previous exception
+
+
 def example3():
     try:
         int('N/A')
@@ -46,5 +50,3 @@ if __name__ == '__main__':
         example3()
     except Exception:
         traceback.print_exc()
-
-

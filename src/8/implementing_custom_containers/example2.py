@@ -1,6 +1,8 @@
 import collections
 
+
 class Items(collections.MutableSequence):
+
     def __init__(self, initial=None):
         self._items = list(initial) if initial is None else []
 

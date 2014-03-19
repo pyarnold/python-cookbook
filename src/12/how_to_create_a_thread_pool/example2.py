@@ -2,6 +2,7 @@ from socket import socket, AF_INET, SOCK_STREAM
 from threading import Thread
 from queue import Queue
 
+
 def echo_client(q):
     '''
     Handle a client connection
@@ -15,6 +16,7 @@ def echo_client(q):
         sock.sendall(msg)
     print('Client closed connection')
     sock.close()
+
 
 def echo_server(addr, nworkers):
     print('Echo server running at', addr)
@@ -33,4 +35,4 @@ def echo_server(addr, nworkers):
         client_sock, client_addr = sock.accept()
         q.put((client_sock, client_addr))
 
-echo_server(('',15000), 128)
+echo_server(('', 15000), 128)

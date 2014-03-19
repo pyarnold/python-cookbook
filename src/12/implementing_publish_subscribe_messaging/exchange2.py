@@ -1,7 +1,9 @@
 from contextlib import contextmanager
 from collections import defaultdict
 
+
 class Exchange:
+
     def __init__(self):
         self._subscribers = set()
 
@@ -30,6 +32,8 @@ class Exchange:
 _exchanges = defaultdict(Exchange)
 
 # Return the Exchange instance associated with a given name
+
+
 def get_exchange(name):
     return _exchanges[name]
 
@@ -37,8 +41,10 @@ def get_exchange(name):
 if __name__ == '__main__':
     # Example task (just for testing)
     class Task:
+
         def __init__(self, name):
             self.name = name
+
         def send(self, msg):
             print('{} got: {!r}'.format(self.name, msg))
 
@@ -51,5 +57,3 @@ if __name__ == '__main__':
         exc.send('msg2')
 
     exc.send('msg3')
-
-

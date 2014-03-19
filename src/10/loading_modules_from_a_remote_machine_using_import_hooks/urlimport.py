@@ -12,8 +12,11 @@ import logging
 log = logging.getLogger(__name__)
 
 # Get links from a given URL
+
+
 def _get_links(url):
     class LinkParser(HTMLParser):
+
         def handle_starttag(self, tag, attrs):
             if tag == 'a':
                 attrs = dict(attrs)
@@ -30,11 +33,13 @@ def _get_links(url):
     log.debug('links: %r', links)
     return links
 
+
 class UrlMetaFinder(importlib.abc.MetaPathFinder):
+
     def __init__(self, baseurl):
         self._baseurl = baseurl
-        self._links   = { }
-        self._loaders = { baseurl : UrlModuleLoader(baseurl) }
+        self._links = {}
+        self._loaders = {baseurl: UrlModuleLoader(baseurl)}
 
     def find_module(self, fullname, path=None):
         log.debug('find_module: fullname=%r, path=%r', fullname, path)
@@ -83,7 +88,10 @@ class UrlMetaFinder(importlib.abc.MetaPathFinder):
         self._links.clear()
 
 # Module Loader for a URL
+
+
 class UrlModuleLoader(importlib.abc.SourceLoader):
+
     def __init__(self, baseurl):
         self._baseurl = baseurl
         self._source_cache = {}
@@ -132,10 +140,13 @@ class UrlModuleLoader(importlib.abc.SourceLoader):
         return False
 
 # Package loader for a URL
+
+
 class UrlPackageLoader(UrlModuleLoader):
+
     def load_module(self, fullname):
         mod = super().load_module(fullname)
-        mod.__path__ = [ self._baseurl ]
+        mod.__path__ = [self._baseurl]
         mod.__package__ = fullname
 
     def get_filename(self, fullname):
@@ -145,14 +156,17 @@ class UrlPackageLoader(UrlModuleLoader):
         return True
 
 # Utility functions for installing/uninstalling the loader
-_installed_meta_cache = { }
+_installed_meta_cache = {}
+
+
 def install_meta(address):
     if address not in _installed_meta_cache:
         finder = UrlMetaFinder(address)
         _installed_meta_cache[address] = finder
         sys.meta_path.append(finder)
         log.debug('%r installed on sys.meta_path', finder)
-    
+
+
 def remove_meta(address):
     if address in _installed_meta_cache:
         finder = _installed_meta_cache.pop(address)
@@ -160,7 +174,10 @@ def remove_meta(address):
         log.debug('%r removed from sys.meta_path', finder)
 
 # Path finder class for a URL
+
+
 class UrlPathFinder(importlib.abc.PathEntryFinder):
+
     def __init__(self, baseurl):
         self._links = None
         self._loader = UrlModuleLoader(baseurl)
@@ -204,6 +221,8 @@ class UrlPathFinder(importlib.abc.PathEntryFinder):
 
 # Check path to see if it looks like a URL
 _url_path_cache = {}
+
+
 def handle_url(path):
     if path.startswith(('http://', 'https://')):
         log.debug('Handle path? %s. [Yes]', path)
@@ -216,11 +235,13 @@ def handle_url(path):
     else:
         log.debug('Handle path? %s. [No]', path)
 
+
 def install_path_hook():
     sys.path_hooks.append(handle_url)
     sys.path_importer_cache.clear()
     log.debug('Installing handle_url')
-    
+
+
 def remove_path_hook():
     sys.path_hooks.remove(handle_url)
     sys.path_importer_cache.clear()

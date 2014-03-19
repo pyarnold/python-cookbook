@@ -2,6 +2,7 @@
 
 # Sample function to illustrate callback control flow
 
+
 def apply_async(func, args, *, callback):
     # Compute the result
     result = func(*args)
@@ -13,10 +14,13 @@ def apply_async(func, args, *, callback):
 from queue import Queue
 from functools import wraps
 
+
 class Async:
+
     def __init__(self, func, args):
         self.func = func
         self.args = args
+
 
 def inlined_async(func):
     @wraps(func)
@@ -34,8 +38,11 @@ def inlined_async(func):
     return wrapper
 
 # Sample use
+
+
 def add(x, y):
     return x + y
+
 
 @inlined_async
 def test():
@@ -58,4 +65,3 @@ if __name__ == '__main__':
     pool = multiprocessing.Pool()
     apply_async = pool.apply_async
     test()
-

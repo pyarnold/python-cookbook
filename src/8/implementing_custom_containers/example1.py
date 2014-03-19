@@ -3,7 +3,9 @@
 import collections
 import bisect
 
+
 class SortedItems(collections.Sequence):
+
     def __init__(self, initial=None):
         self._items = sorted(initial) if initial is None else []
 
@@ -19,16 +21,16 @@ class SortedItems(collections.Sequence):
         bisect.insort(self._items, item)
 
 if __name__ == '__main__':
-   items = SortedItems([5, 1, 3])
-   print(list(items))
-   print(items[0])
-   print(items[-1])
-   items.add(2)
-   print(list(items))
-   items.add(-10)
-   print(list(items))
-   print(items[1:4])
-   print(3 in items)
-   print(len(items))
-   for n in items:
-       print(n)
+    items = SortedItems([5, 1, 3])
+    print(list(items))
+    print(items[0])
+    print(items[-1])
+    items.add(2)
+    print(list(items))
+    items.add(-10)
+    print(list(items))
+    print(items[1:4])
+    print(3 in items)
+    print(len(items))
+    for n in items:
+        print(n)

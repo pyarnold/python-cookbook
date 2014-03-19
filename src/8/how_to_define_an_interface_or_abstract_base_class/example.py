@@ -2,22 +2,31 @@
 
 from abc import ABCMeta, abstractmethod
 
+
 class IStream(metaclass=ABCMeta):
+
     @abstractmethod
     def read(self, maxbytes=-1):
         pass
+
     @abstractmethod
     def write(self, data):
         pass
 
 # Example implementation
+
+
 class SocketStream(IStream):
+
     def read(self, maxbytes=-1):
         print('reading')
+
     def write(self, data):
         print('writing')
 
 # Example of type checking
+
+
 def serialize(obj, stream):
     if not isinstance(stream, IStream):
         raise TypeError('Expected an IStream')
@@ -52,6 +61,3 @@ if __name__ == '__main__':
     IStream.register(io.IOBase)
 
     serialize(None, sys.stdout)
-
-
-

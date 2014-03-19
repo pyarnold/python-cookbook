@@ -1,10 +1,11 @@
 class Structure:
     # Class variable that specifies expected fields
-    _fields= []
+    _fields = []
+
     def __init__(self, *args, **kwargs):
         if len(args) != len(self._fields):
             raise TypeError('Expected {} arguments'.format(len(self._fields)))
-       
+
         # Set the arguments
         for name, value in zip(self._fields, args):
             setattr(self, name, value)
@@ -15,7 +16,7 @@ class Structure:
             setattr(self, name, kwargs.pop(name))
         if kwargs:
             raise TypeError('Duplicate values for {}'.format(','.join(kwargs)))
-        
+
 # Example use
 if __name__ == '__main__':
     class Stock(Structure):

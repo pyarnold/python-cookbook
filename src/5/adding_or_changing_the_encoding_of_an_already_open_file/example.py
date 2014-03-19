@@ -8,4 +8,3 @@ f = io.TextIOWrapper(u, encoding='utf-8')
 text = f.read()
 
 print(text)
-

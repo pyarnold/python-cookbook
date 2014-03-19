@@ -1,6 +1,8 @@
 from socketserver import BaseRequestHandler, TCPServer
 
+
 class EchoHandler(BaseRequestHandler):
+
     def handle(self):
         print('Got connection from', self.client_address)
         while True:

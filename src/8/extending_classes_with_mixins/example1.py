@@ -1,4 +1,5 @@
 class LoggedMappingMixin:
+
     '''
     Add logging to get/set/delete operations for debugging.
     '''
@@ -15,22 +16,28 @@ class LoggedMappingMixin:
     def __delitem__(self, key):
         print('Deleting ' + str(key))
         return super().__delitem__(key)
-    
+
+
 class SetOnceMappingMixin:
+
     '''
     Only allow a key to be set once.
     '''
     __slots__ = ()
+
     def __setitem__(self, key, value):
         if key in self:
             raise KeyError(str(key) + ' already set')
         return super().__setitem__(key, value)
 
+
 class StringKeysMappingMixin:
+
     '''
     Restrict keys to strings only
     '''
     __slots__ = ()
+
     def __setitem__(self, key, value):
         if not isinstance(key, str):
             raise TypeError('keys must be strings')
@@ -40,6 +47,7 @@ class StringKeysMappingMixin:
 # Examples
 
 print('# ---- LoggedDict Example')
+
 
 class LoggedDict(LoggedMappingMixin, dict):
     pass
@@ -52,9 +60,11 @@ del d['x']
 print('# ---- SetOnceDefaultDict Example')
 
 from collections import defaultdict
+
+
 class SetOnceDefaultDict(SetOnceMappingMixin, defaultdict):
     pass
- 
+
 d = SetOnceDefaultDict(list)
 d['x'].append(2)
 d['y'].append(3)
@@ -66,6 +76,7 @@ except KeyError as e:
 
 print('# ---- StringOrderedDict Example')
 from collections import OrderedDict
+
 
 class StringOrderedDict(StringKeysMappingMixin,
                         SetOnceMappingMixin,

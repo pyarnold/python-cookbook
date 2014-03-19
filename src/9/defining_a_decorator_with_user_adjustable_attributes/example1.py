@@ -1,11 +1,13 @@
 from functools import wraps, partial
 import logging
 
+
 def attach_wrapper(obj, func=None):
     if func is None:
         return partial(attach_wrapper, obj)
     setattr(obj, func.__name__, func)
     return func
+
 
 def logged(level, name=None, message=None):
     '''
@@ -39,9 +41,12 @@ def logged(level, name=None, message=None):
     return decorate
 
 # Example use
+
+
 @logged(logging.DEBUG)
 def add(x, y):
     return x + y
+
 
 @logged(logging.CRITICAL, 'example')
 def spam():
@@ -50,6 +55,8 @@ def spam():
 # Example involving multiple decorators
 
 import time
+
+
 def timethis(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -59,6 +66,7 @@ def timethis(func):
         print(func.__name__, end - start)
         return r
     return wrapper
+
 
 @timethis
 @logged(logging.DEBUG)

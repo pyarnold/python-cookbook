@@ -1,18 +1,21 @@
 class A:
+
     def spam(self, x):
         print('A.spam')
 
     def foo(self):
         print('A.foo')
 
+
 class B:
+
     def __init__(self):
-        self._a = A()   
+        self._a = A()
 
     def bar(self):
         print('B.bar')
 
-    # Expose all of the methods defined on class A   
+    # Expose all of the methods defined on class A
     def __getattr__(self, name):
         return getattr(self._a, name)
 

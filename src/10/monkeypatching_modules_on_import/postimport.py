@@ -6,7 +6,9 @@ from collections import defaultdict
 
 _post_import_hooks = defaultdict(list)
 
+
 class PostImportFinder:
+
     def __init__(self):
         self._skip = set()
 
@@ -16,7 +18,9 @@ class PostImportFinder:
         self._skip.add(fullname)
         return PostImportLoader(self)
 
+
 class PostImportLoader:
+
     def __init__(self, finder):
         self._finder = finder
 
@@ -28,6 +32,7 @@ class PostImportLoader:
         self._finder._skip.remove(fullname)
         return module
 
+
 def when_imported(fullname):
     def decorate(func):
         if fullname in sys.modules:
@@ -36,5 +41,5 @@ def when_imported(fullname):
             _post_import_hooks[fullname].append(func)
         return func
     return decorate
-    
+
 sys.meta_path.insert(0, PostImportFinder())

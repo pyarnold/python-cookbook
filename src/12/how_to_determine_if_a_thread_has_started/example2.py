@@ -1,7 +1,9 @@
 import threading
 import time
 
+
 class PeriodicTimer:
+
     def __init__(self, interval):
         self._interval = interval
         self._flag = 0
@@ -19,8 +21,8 @@ class PeriodicTimer:
         while True:
             time.sleep(self._interval)
             with self._cv:
-                 self._flag ^= 1
-                 self._cv.notify_all()
+                self._flag ^= 1
+                self._cv.notify_all()
 
     def wait_for_tick(self):
         '''
@@ -36,11 +38,14 @@ ptimer = PeriodicTimer(5)
 ptimer.start()
 
 # Two threads that synchronize on the timer
+
+
 def countdown(nticks):
     while nticks > 0:
         ptimer.wait_for_tick()
         print("T-minus", nticks)
         nticks -= 1
+
 
 def countup(last):
     n = 0

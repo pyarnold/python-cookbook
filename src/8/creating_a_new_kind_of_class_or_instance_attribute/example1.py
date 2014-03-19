@@ -1,5 +1,6 @@
 # Descriptor attribute for an integer type-checked attribute
 class Integer:
+
     def __init__(self, name):
         self.name = name
 
@@ -17,9 +18,11 @@ class Integer:
     def __delete__(self, instance):
         del instance.__dict__[self.name]
 
+
 class Point:
     x = Integer('x')
     y = Integer('y')
+
     def __init__(self, x, y):
         self.x = x
         self.y = y

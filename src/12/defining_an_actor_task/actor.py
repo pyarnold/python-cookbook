@@ -2,10 +2,14 @@ from queue import Queue
 from threading import Thread, Event
 
 # Sentinel used for shutdown
+
+
 class ActorExit(Exception):
     pass
 
+
 class Actor:
+
     def __init__(self):
         self._mailbox = Queue()
 
@@ -58,7 +62,10 @@ class Actor:
             msg = self.recv()
 
 # Sample ActorTask
+
+
 class PrintActor(Actor):
+
     def run(self):
         while True:
             msg = self.recv()
@@ -72,4 +79,3 @@ if __name__ == '__main__':
     p.send("World")
     p.close()
     p.join()
-

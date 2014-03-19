@@ -1,7 +1,9 @@
 from xmlrpc.server import SimpleXMLRPCServer
 
+
 class KeyValueServer:
     _rpc_methods_ = ['get', 'set', 'delete', 'exists', 'keys']
+
     def __init__(self, address):
         self._data = {}
         self._serv = SimpleXMLRPCServer(address, allow_none=True)

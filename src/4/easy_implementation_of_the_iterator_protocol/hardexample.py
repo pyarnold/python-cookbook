@@ -1,6 +1,8 @@
 # Hard example of depth-first iteration using an iterator object
 
+
 class Node:
+
     def __init__(self, value):
         self._value = value
         self._children = []
@@ -10,17 +12,20 @@ class Node:
 
     def add_child(self, other_node):
         self._children.append(other_node)
- 
+
     def __iter__(self):
         return iter(self._children)
 
     def depth_first(self):
         return DepthFirstIterator(self)
 
+
 class DepthFirstIterator(object):
+
     '''
     Depth-first traversal
     '''
+
     def __init__(self, start_node):
         self._node = start_node
         self._children_iter = None

@@ -2,6 +2,7 @@
 import socket
 import struct
 
+
 def recv_fd(sock):
     '''
     Receive a single file descriptor
@@ -13,6 +14,7 @@ def recv_fd(sock):
     assert cmsg_level == socket.SOL_SOCKET and cmsg_type == socket.SCM_RIGHTS
     sock.sendall(b'OK')
     return struct.unpack('i', cmsg_data)[0]
+
 
 def worker(server_address):
     serv = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
@@ -27,7 +29,7 @@ def worker(server_address):
                     break
                 print('WORKER: RECV {!r}'.format(msg))
                 client.send(msg)
-    
+
 if __name__ == '__main__':
     import sys
     if len(sys.argv) != 2:

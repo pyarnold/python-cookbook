@@ -1,5 +1,6 @@
 class Structure:
-    _fields= []
+    _fields = []
+
     def __init__(self, *args, **kwargs):
         if len(args) > len(self._fields):
             raise TypeError('Expected {} arguments'.format(len(self._fields)))
@@ -15,7 +16,7 @@ class Structure:
         # Check for any remaining unknown arguments
         if kwargs:
             raise TypeError('Invalid argument(s): {}'.format(','.join(kwargs)))
-        
+
 # Example use
 if __name__ == '__main__':
     class Stock(Structure):

@@ -2,8 +2,10 @@
 
 import weakref
 
+
 class Spam:
     _spam_cache = weakref.WeakValueDictionary()
+
     def __new__(cls, name):
         if name in cls._spam_cache:
             return cls._spam_cache[name]
@@ -21,4 +23,3 @@ if __name__ == '__main__':
     s = Spam('Dave')
     t = Spam('Dave')
     print(s is t)
-

@@ -6,4 +6,3 @@ s.send(b'Hello\n')
 resp = s.recv(8192)
 print('Response:', resp)
 s.close()
-

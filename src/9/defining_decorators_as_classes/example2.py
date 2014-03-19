@@ -1,8 +1,10 @@
 # Reformulation using closures and function attributes
 from functools import wraps
 
+
 def profiled(func):
     ncalls = 0
+
     @wraps(func)
     def wrapper(*args, **kwargs):
         nonlocal ncalls
@@ -13,18 +15,21 @@ def profiled(func):
 
 # Example
 
+
 @profiled
 def add(x, y):
     return x + y
 
+
 class Spam:
+
     @profiled
     def bar(self, x):
         print(self, x)
 
 if __name__ == '__main__':
-    print(add(2,3))
-    print(add(4,5))
+    print(add(2, 3))
+    print(add(4, 5))
     print('ncalls:', add.ncalls())
 
     s = Spam()

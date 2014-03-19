@@ -5,7 +5,9 @@
 from xmlrpc.client import SafeTransport, ServerProxy
 import ssl
 
+
 class VerifyCertSafeTransport(SafeTransport):
+
     def __init__(self, cafile, certfile=None, keyfile=None):
         super().__init__()
         self._ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
@@ -20,9 +22,10 @@ class VerifyCertSafeTransport(SafeTransport):
         return s
 
 # Create the client proxy
-s = ServerProxy('https://localhost:15000', 
-                transport=VerifyCertSafeTransport('server_cert.pem', 'client_cert.pem', 'client_key.pem'),
-#                transport=VerifyCertSafeTransport('server_cert.pem'),
+s = ServerProxy('https://localhost:15000',
+                transport=VerifyCertSafeTransport(
+                    'server_cert.pem', 'client_cert.pem', 'client_key.pem'),
+                # transport=VerifyCertSafeTransport('server_cert.pem'),
                 allow_none=True)
 
 s.set('foo', 'bar')
@@ -32,4 +35,3 @@ print(s.get('foo'))
 print(s.get('spam'))
 s.delete('spam')
 print(s.exists('spam'))
-

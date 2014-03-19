@@ -2,12 +2,12 @@
 #
 # Example of combining dicts into a chainmap
 
-a = {'x': 1, 'z': 3 }
-b = {'y': 2, 'z': 4 }
+a = {'x': 1, 'z': 3}
+b = {'y': 2, 'z': 4}
 
 # (a) Simple example of combining
 from collections import ChainMap
-c = ChainMap(a,b)
+c = ChainMap(a, b)
 print(c['x'])      # Outputs 1  (from a)
 print(c['y'])      # Outputs 2  (from b)
 print(c['z'])      # Outputs 3  (from a)
@@ -48,4 +48,3 @@ print(values['x'])
 values = values.parents
 print(values)
 print(values['x'])
-

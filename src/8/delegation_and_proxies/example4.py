@@ -1,11 +1,14 @@
 class A:
+
     def spam(self):
         print('A.spam')
 
     def foo(self):
         print('A.foo')
 
+
 class B:
+
     def __init__(self):
         self._a = A()
 

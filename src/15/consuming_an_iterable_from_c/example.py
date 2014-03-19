@@ -1,6 +1,7 @@
 import sample
 
-sample.consume_iterable([1,2,3,4])
+sample.consume_iterable([1, 2, 3, 4])
+
 
 def countdown(n):
     while n > 0:

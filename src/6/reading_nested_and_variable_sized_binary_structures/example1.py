@@ -1,18 +1,23 @@
 import struct
 
+
 class StructField:
+
     def __init__(self, format, offset):
         self.format = format
         self.offset = offset
+
     def __get__(self, instance, cls):
         if instance is None:
             return self
         else:
-            r =  struct.unpack_from(self.format, 
-                                    instance._buffer, self.offset)
+            r = struct.unpack_from(self.format,
+                                   instance._buffer, self.offset)
             return r[0] if len(r) == 1 else r
 
+
 class Structure:
+
     def __init__(self, bytedata):
         self._buffer = memoryview(bytedata)
 
@@ -26,9 +31,9 @@ if __name__ == '__main__':
         max_y = StructField('<d', 28)
         num_polys = StructField('<i', 36)
 
-    f = open('polys.bin','rb')
+    f = open('polys.bin', 'rb')
     data = f.read()
-    
+
     phead = PolyHeader(data)
     print(phead.file_code == 0x1234)
     print('min_x=', phead.min_x)

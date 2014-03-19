@@ -4,10 +4,12 @@ from deadlock import acquire
 x_lock = threading.Lock()
 y_lock = threading.Lock()
 
+
 def thread_1():
     while True:
         with acquire(x_lock, y_lock):
             print("Thread-1")
+
 
 def thread_2():
     while True:

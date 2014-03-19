@@ -1,5 +1,6 @@
 def lazyproperty(func):
     name = '_lazy_' + func.__name__
+
     @property
     def lazy(self):
         if hasattr(self, name):
@@ -9,10 +10,12 @@ def lazyproperty(func):
             setattr(self, name, value)
             return value
     return lazy
-        
+
 if __name__ == '__main__':
     import math
+
     class Circle:
+
         def __init__(self, radius):
             self.radius = radius
 
@@ -25,4 +28,3 @@ if __name__ == '__main__':
         def perimeter(self):
             print('Computing perimeter')
             return 2 * math.pi * self.radius
-

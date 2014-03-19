@@ -6,4 +6,3 @@ try:
 except subprocess.CalledProcessError as e:
     print('It did not work. Reason:', e)
     print('Exitcode:', e.returncode)
-

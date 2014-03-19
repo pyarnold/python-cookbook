@@ -1,6 +1,7 @@
 from multiprocessing.connection import Listener
 import traceback
 
+
 def echo_client(conn):
     try:
         while True:
@@ -8,6 +9,7 @@ def echo_client(conn):
             conn.send(msg)
     except EOFError:
         print('Connection closed')
+
 
 def echo_server(address, authkey):
     serv = Listener(address, authkey=authkey)

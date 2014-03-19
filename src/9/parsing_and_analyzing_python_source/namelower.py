@@ -3,8 +3,11 @@ import ast
 import inspect
 
 # Node visitor that lowers globally accessed names into
-# the function body as local variables. 
+# the function body as local variables.
+
+
 class NameLower(ast.NodeVisitor):
+
     def __init__(self, lowered_names):
         self.lowered_names = lowered_names
 
@@ -23,6 +26,8 @@ class NameLower(ast.NodeVisitor):
         self.func = node
 
 # Decorator that turns global names into locals
+
+
 def lower_names(*namelist):
     def lower(func):
         srclines = inspect.getsource(func).splitlines()
@@ -31,19 +36,19 @@ def lower_names(*namelist):
             if '@lower_names' in line:
                 break
 
-        src = '\n'.join(srclines[n+1:])
+        src = '\n'.join(srclines[n + 1:])
         # Hack to deal with indented code
-        if src.startswith((' ','\t')):
+        if src.startswith((' ', '\t')):
             src = 'if 1:\n' + src
         top = ast.parse(src, mode='exec')
 
-        # Transform the AST 
+        # Transform the AST
         cl = NameLower(namelist)
         cl.visit(top)
 
         # Execute the modified AST
         temp = {}
-        exec(compile(top,'','exec'), temp, temp)
+        exec(compile(top, '', 'exec'), temp, temp)
 
         # Pull out the modified code object
         func.__code__ = temp[func.__name__].__code__
@@ -53,9 +58,11 @@ def lower_names(*namelist):
 # Example of use
 INCR = 1
 
+
 def countdown1(n):
     while n > 0:
         n -= INCR
+
 
 @lower_names('INCR')
 def countdown2(n):
@@ -69,10 +76,9 @@ if __name__ == '__main__':
     start = time.time()
     countdown1(100000000)
     end = time.time()
-    print('countdown1:', end-start)
+    print('countdown1:', end - start)
 
     start = time.time()
     countdown2(100000000)
     end = time.time()
-    print('countdown2:', end-start)
-
+    print('countdown2:', end - start)

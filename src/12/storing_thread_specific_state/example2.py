@@ -1,7 +1,9 @@
 from socket import socket, AF_INET, SOCK_STREAM
 import threading
 
+
 class LazyConnection:
+
     def __init__(self, address, family=AF_INET, type=SOCK_STREAM):
         self.address = address
         self.family = AF_INET
@@ -15,9 +17,10 @@ class LazyConnection:
             self.local.connections = []
         self.local.connections.append(sock)
         return sock
-                
+
     def __exit__(self, exc_ty, exc_val, tb):
         self.local.connections.pop().close()
+
 
 def test(conn):
     # Example use
@@ -56,5 +59,3 @@ if __name__ == '__main__':
     t1.join()
     t2.join()
     t3.join()
-
-

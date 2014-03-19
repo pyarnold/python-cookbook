@@ -1,19 +1,25 @@
 # Example of faking classes with a closure
 
 import sys
+
+
 class ClosureInstance:
+
     def __init__(self, locals=None):
         if locals is None:
             locals = sys._getframe(1).f_locals
 
         # Update instance dictionary with callables
-        self.__dict__.update((key,value) for key, value in locals.items()
-                             if callable(value) )
+        self.__dict__.update((key, value) for key, value in locals.items()
+                             if callable(value))
     # Redirect special methods
+
     def __len__(self):
         return self.__dict__['__len__']()
 
 # Example use
+
+
 def Stack():
     items = []
 

@@ -1,5 +1,6 @@
 # Descriptor for a type-checked attribute
 class Typed:
+
     def __init__(self, name, expected_type):
         self.name = name
         self.expected_type = expected_type
@@ -19,6 +20,8 @@ class Typed:
         del instance.__dict__[self.name]
 
 # Class decorator that applies it to selected attributes
+
+
 def typeassert(**kwargs):
     def decorate(cls):
         for name, expected_type in kwargs.items():
@@ -28,8 +31,11 @@ def typeassert(**kwargs):
     return decorate
 
 # Example use
+
+
 @typeassert(name=str, shares=int, price=float)
 class Stock:
+
     def __init__(self, name, shares, price):
         self.name = name
         self.shares = shares

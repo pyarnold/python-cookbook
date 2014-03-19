@@ -10,8 +10,9 @@ _hello_resp = '''\
    </body>
 </html>'''
 
+
 def hello_world(environ, start_response):
-    start_response('200 OK', [ ('Content-type','text/html')])
+    start_response('200 OK', [('Content-type', 'text/html')])
     params = environ['params']
     resp = _hello_resp.format(name=params.get('name'))
     yield resp.encode('utf-8')
@@ -27,8 +28,9 @@ _localtime_resp = '''\
   <second>{t.tm_sec}</second>
 </time>'''
 
+
 def localtime(environ, start_response):
-    start_response('200 OK', [ ('Content-type', 'application/xml') ])
+    start_response('200 OK', [('Content-type', 'application/xml')])
     resp = _localtime_resp.format(t=time.localtime())
     yield resp.encode('utf-8')
 

@@ -20,10 +20,9 @@ delimiters = fields[1::2]
 delimiters.append('')
 print('value =', values)
 print('delimiters =', delimiters)
-newline = ''.join(v+d for v,d in zip(values, delimiters))
+newline = ''.join(v + d for v, d in zip(values, delimiters))
 print('newline =', newline)
 
 # (d) Splitting using a non-capture group
 parts = re.split(r'(?:,|;|\s)\s*', line)
 print(parts)
-

@@ -1,7 +1,9 @@
 from functools import wraps
 
+
 class A:
     # Decorator as an instance method
+
     def decorator1(self, func):
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -22,11 +24,14 @@ class A:
 # As an instance method
 a = A()
 
+
 @a.decorator1
 def spam():
     pass
 
 # As a class method
+
+
 @A.decorator2
 def grok():
     pass

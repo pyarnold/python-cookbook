@@ -1,5 +1,6 @@
 # Base class. Uses a descriptor to set a value
 class Descriptor:
+
     def __init__(self, name=None, **opts):
         self.name = name
         self.__dict__.update(opts)
@@ -7,11 +8,13 @@ class Descriptor:
     def __set__(self, instance, value):
         instance.__dict__[self.name] = value
 
+
 def Typed(expected_type, cls=None):
     if cls is None:
         return lambda cls: Typed(expected_type, cls)
 
     super_set = cls.__set__
+
     def __set__(self, instance, value):
         if not isinstance(value, expected_type):
             raise TypeError('expected ' + str(expected_type))
@@ -19,8 +22,10 @@ def Typed(expected_type, cls=None):
     cls.__set__ = __set__
     return cls
 
+
 def Unsigned(cls):
     super_set = cls.__set__
+
     def __set__(self, instance, value):
         if value < 0:
             raise ValueError('Expected >= 0')
@@ -28,8 +33,10 @@ def Unsigned(cls):
     cls.__set__ = __set__
     return cls
 
+
 def MaxSized(cls):
     super_init = cls.__init__
+
     def __init__(self, name=None, **opts):
         if 'size' not in opts:
             raise TypeError('missing size option')
@@ -38,6 +45,7 @@ def MaxSized(cls):
     cls.__init__ = __init__
 
     super_set = cls.__set__
+
     def __set__(self, instance, value):
         if len(value) >= self.size:
             raise ValueError('size must be < ' + str(self.size))
@@ -45,31 +53,39 @@ def MaxSized(cls):
     cls.__set__ = __set__
     return cls
 
+
 @Typed(int)
 class Integer(Descriptor):
     pass
+
 
 @Unsigned
 class UnsignedInteger(Integer):
     pass
 
+
 @Typed(float)
 class Float(Descriptor):
     pass
+
 
 @Unsigned
 class UnsignedFloat(Float):
     pass
 
+
 @Typed(str)
 class String(Descriptor):
     pass
+
 
 @MaxSized
 class SizedString(String):
     pass
 
 # Class decorator to apply constraints
+
+
 def check_attributes(**kwargs):
     def decorate(cls):
         for key, value in kwargs.items():
@@ -82,7 +98,10 @@ def check_attributes(**kwargs):
     return decorate
 
 # A metaclass that applies checking
+
+
 class checkedmeta(type):
+
     def __new__(cls, clsname, bases, methods):
         # Attach attribute names to the descriptors
         for key, value in methods.items():
@@ -91,6 +110,8 @@ class checkedmeta(type):
         return type.__new__(cls, clsname, bases, methods)
 
 # Testing code
+
+
 def test(s):
     print(s.name)
     s.shares = 75
@@ -112,42 +133,47 @@ def test(s):
 # Various Examples:
 if __name__ == '__main__':
     print("# --- Class with descriptors")
+
     class Stock:
         # Specify constraints
         name = SizedString('name', size=8)
         shares = UnsignedInteger('shares')
         price = UnsignedFloat('price')
+
         def __init__(self, name, shares, price):
             self.name = name
             self.shares = shares
             self.price = price
 
-    s = Stock('ACME',50,91.1)
+    s = Stock('ACME', 50, 91.1)
     test(s)
 
     print("# --- Class with class decorator")
-    @check_attributes(name=SizedString(size=8), 
+
+    @check_attributes(name=SizedString(size=8),
                       shares=UnsignedInteger,
                       price=UnsignedFloat)
     class Stock:
+
         def __init__(self, name, shares, price):
             self.name = name
             self.shares = shares
             self.price = price
 
-    s = Stock('ACME',50,91.1)
+    s = Stock('ACME', 50, 91.1)
     test(s)
 
     print("# --- Class with metaclass")
+
     class Stock(metaclass=checkedmeta):
-        name   = SizedString(size=8)
+        name = SizedString(size=8)
         shares = UnsignedInteger()
-        price  = UnsignedFloat()
+        price = UnsignedFloat()
+
         def __init__(self, name, shares, price):
             self.name = name
             self.shares = shares
             self.price = price
 
-    s = Stock('ACME',50,91.1)
+    s = Stock('ACME', 50, 91.1)
     test(s)
-        

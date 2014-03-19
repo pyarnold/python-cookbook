@@ -1,12 +1,15 @@
 # A very simple example of a coroutine/generator scheduler
 
 # Two simple generator functions
+
+
 def countdown(n):
     while n > 0:
         print("T-minus", n)
         yield
         n -= 1
     print("Blastoff!")
+
 
 def countup(n):
     x = 0
@@ -17,7 +20,9 @@ def countup(n):
 
 from collections import deque
 
+
 class TaskScheduler:
+
     def __init__(self):
         self._task_queue = deque()
 

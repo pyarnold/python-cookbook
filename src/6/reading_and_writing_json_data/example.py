@@ -12,7 +12,9 @@ print(data)
 
 # (b) Using JSON to populate an instance
 
+
 class JSONObject:
+
     def __init__(self, d):
         self.__dict__ = d
 
@@ -23,24 +25,28 @@ print(data.price)
 
 # (c) Encoding instances
 
+
 class Point:
+
     def __init__(self, x, y):
         self.x = x
         self.y = y
 
+
 def serialize_instance(obj):
-    d = { '__classname__' : type(obj).__name__ }
+    d = {'__classname__': type(obj).__name__}
     d.update(vars(obj))
     return d
 
-p = Point(3,4)
+p = Point(3, 4)
 s = json.dumps(p, default=serialize_instance)
 print(s)
 
 # (d) Decoding instances
 classes = {
-    'Point' : Point
+    'Point': Point
 }
+
 
 def unserialize_object(d):
     clsname = d.pop('__classname__', None)
@@ -57,5 +63,3 @@ a = json.loads(s, object_hook=unserialize_object)
 print(a)
 print(a.x)
 print(a.y)
-
-            

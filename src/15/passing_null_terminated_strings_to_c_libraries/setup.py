@@ -1,10 +1,10 @@
 # setup.py
 from distutils.core import setup, Extension
 
-setup(name="sample", 
+setup(name="sample",
       ext_modules=[
-        Extension("sample",
+          Extension("sample",
                   ["sample.c"],
-                  )
-        ]
-)
+          )
+      ]
+      )

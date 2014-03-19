@@ -1,5 +1,6 @@
 from contextlib import contextmanager
 
+
 @contextmanager
 def list_transaction(orig_list):
     working = list(orig_list)
@@ -22,4 +23,3 @@ if __name__ == '__main__':
         print(e)
 
     print(items)
-    

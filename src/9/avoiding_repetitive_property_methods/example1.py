@@ -13,9 +13,12 @@ def typed_property(name, expected_type):
     return prop
 
 # Example use
+
+
 class Person:
     name = typed_property('name', str)
     age = typed_property('age', int)
+
     def __init__(self, name, age):
         self.name = name
         self.age = age
@@ -27,4 +30,3 @@ if __name__ == '__main__':
         p.age = 'Old'
     except TypeError as e:
         print(e)
-

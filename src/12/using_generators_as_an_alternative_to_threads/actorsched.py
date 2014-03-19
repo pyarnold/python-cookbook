@@ -1,15 +1,17 @@
 from collections import deque
 
+
 class ActorScheduler:
+
     def __init__(self):
-        self._actors = { }          # Mapping of names to actors
+        self._actors = {}          # Mapping of names to actors
         self._msg_queue = deque()   # Message queue
-    
+
     def new_actor(self, name, actor):
         '''
         Admit a newly started actor to the scheduler and give it a name
         '''
-        self._msg_queue.append((actor,None))
+        self._msg_queue.append((actor, None))
         self._actors[name] = actor
 
     def send(self, name, msg):
@@ -18,7 +20,7 @@ class ActorScheduler:
         '''
         actor = self._actors.get(name)
         if actor:
-            self._msg_queue.append((actor,msg))
+            self._msg_queue.append((actor, msg))
 
     def run(self):
         '''
@@ -27,9 +29,9 @@ class ActorScheduler:
         while self._msg_queue:
             actor, msg = self._msg_queue.popleft()
             try:
-                 actor.send(msg)
+                actor.send(msg)
             except StopIteration:
-                 pass
+                pass
 
 # Example use
 if __name__ == '__main__':
@@ -41,13 +43,13 @@ if __name__ == '__main__':
     def counter(sched):
         while True:
             # Receive the current count
-            n = yield    
+            n = yield
             if n == 0:
                 break
             # Send to the printer task
             sched.send('printer', n)
             # Send the next count to the counter task (recursive)
-            sched.send('counter', n-1)
+            sched.send('counter', n - 1)
 
     sched = ActorScheduler()
     # Create the initial actors

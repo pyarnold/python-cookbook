@@ -2,7 +2,9 @@
 #
 # Example of depth-first search using a generator
 
+
 class Node:
+
     def __init__(self, value):
         self._value = value
         self._children = []

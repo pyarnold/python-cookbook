@@ -1,6 +1,8 @@
 # examples of keyword-only argument functions
 
 # A simple keyword-only argument
+
+
 def recv(maxsize, *, block=True):
     print(maxsize, block)
 
@@ -11,6 +13,8 @@ except TypeError as e:
     print(e)
 
 # Adding keyword-only args to *args functions
+
+
 def minimum(*values, clip=None):
     m = min(values)
     if clip is not None:

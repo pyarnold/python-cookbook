@@ -2,6 +2,7 @@
 #
 # Example of combining text via generators
 
+
 def sample():
     yield "Is"
     yield "Chicago"
@@ -19,6 +20,8 @@ for part in sample():
 sys.stdout.write('\n')
 
 # (c) Combination of parts into buffers and larger I/O operations
+
+
 def combine(source, maxsize):
     parts = []
     size = 0
@@ -34,5 +37,3 @@ def combine(source, maxsize):
 for part in combine(sample(), 32768):
     sys.stdout.write(part)
 sys.stdout.write('\n')
-
-

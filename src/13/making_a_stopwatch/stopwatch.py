@@ -1,6 +1,8 @@
 import time
 
+
 class Timer:
+
     def __init__(self, func=time.perf_counter):
         self.elapsed = 0.0
         self._func = func
@@ -10,7 +12,7 @@ class Timer:
         if self._start is not None:
             raise RuntimeError('Already started')
         self._start = self._func()
-        
+
     def end(self):
         if self._start is None:
             raise RuntimeError('Not started')
@@ -47,4 +49,3 @@ if __name__ == '__main__':
     with t:
         countdown(1000000)
     print(t.elapsed)
-

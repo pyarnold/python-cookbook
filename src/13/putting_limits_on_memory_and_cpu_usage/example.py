@@ -2,9 +2,11 @@ import signal
 import resource
 import os
 
+
 def time_exceeded(signo, frame):
     print("Time's up!")
     raise SystemExit(1)
+
 
 def set_max_runtime(seconds):
     # Install the signal handler and set a resource limit

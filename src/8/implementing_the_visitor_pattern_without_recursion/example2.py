@@ -2,35 +2,48 @@
 
 from node import Node, NodeVisitor
 
+
 class UnaryOperator(Node):
+
     def __init__(self, operand):
         self.operand = operand
 
+
 class BinaryOperator(Node):
+
     def __init__(self, left, right):
         self.left = left
         self.right = right
 
+
 class Add(BinaryOperator):
     pass
+
 
 class Sub(BinaryOperator):
     pass
 
+
 class Mul(BinaryOperator):
     pass
+
 
 class Div(BinaryOperator):
     pass
 
+
 class Negate(UnaryOperator):
     pass
 
+
 class Number(Node):
+
     def __init__(self, value):
         self.value = value
 
+
 class Evaluator(NodeVisitor):
+
     def visit_Number(self, node):
         return node.value
 
@@ -48,7 +61,7 @@ class Evaluator(NodeVisitor):
 
     def visit_Negate(self, node):
         yield -(yield node.operand)
-    
+
 if __name__ == '__main__':
     # 1 + 2*(3-4) / 5
     t1 = Sub(Number(3), Number(4))
@@ -70,4 +83,3 @@ if __name__ == '__main__':
         print(e.visit(a))
     except RuntimeError as e:
         print(e)
-

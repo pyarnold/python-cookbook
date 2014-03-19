@@ -8,9 +8,9 @@ print(s)
 
 # (a) Remapping whitespace
 remap = {
-    ord('\t') : ' ',
-    ord('\f') : ' ',
-    ord('\r') : None      # Deleted
+    ord('\t'): ' ',
+    ord('\f'): ' ',
+    ord('\r'): None      # Deleted
 }
 
 a = s.translate(remap)
@@ -27,5 +27,5 @@ c = b.translate(cmb_chrs)
 print('accents removed:', c)
 
 # (c) Accent removal using I/O decoding
-d = b.encode('ascii','ignore').decode('ascii')
+d = b.encode('ascii', 'ignore').decode('ascii')
 print('accents removed via I/O:', d)

@@ -1,8 +1,11 @@
 import weakref
 
+
 class CachedSpamManager:
+
     def __init__(self):
         self._cache = weakref.WeakValueDictionary()
+
     def get_spam(self, name):
         if name not in self._cache:
             s = Spam(name)
@@ -10,12 +13,15 @@ class CachedSpamManager:
         else:
             s = self._cache[name]
         return s
-      
+
+
 class Spam:
+
     def __init__(self, name):
         self.name = name
 
 Spam.manager = CachedSpamManager()
+
 
 def get_spam(name):
     return Spam.manager.get_spam(name)

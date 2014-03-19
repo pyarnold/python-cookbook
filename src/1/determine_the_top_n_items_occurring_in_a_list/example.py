@@ -3,10 +3,10 @@
 # Determine the most common words in a list
 
 words = [
-   'look', 'into', 'my', 'eyes', 'look', 'into', 'my', 'eyes',
-   'the', 'eyes', 'the', 'eyes', 'the', 'eyes', 'not', 'around', 'the',
-   'eyes', "don't", 'look', 'around', 'the', 'eyes', 'look', 'into',
-   'my', 'eyes', "you're", 'under'
+    'look', 'into', 'my', 'eyes', 'look', 'into', 'my', 'eyes',
+    'the', 'eyes', 'the', 'eyes', 'the', 'eyes', 'not', 'around', 'the',
+    'eyes', "don't", 'look', 'around', 'the', 'eyes', 'look', 'into',
+    'my', 'eyes', "you're", 'under'
 ]
 
 from collections import Counter
@@ -17,9 +17,6 @@ print(top_three)
 
 # Example of merging in more words
 
-morewords = ['why','are','you','not','looking','in','my','eyes']
+morewords = ['why', 'are', 'you', 'not', 'looking', 'in', 'my', 'eyes']
 word_counts.update(morewords)
 print(word_counts.most_common(3))
-
-
-

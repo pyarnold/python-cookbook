@@ -2,21 +2,27 @@
 
 from inspect import Signature, Parameter
 
+
 def make_sig(*names):
     parms = [Parameter(name, Parameter.POSITIONAL_OR_KEYWORD)
              for name in names]
     return Signature(parms)
 
+
 class Structure:
     __signature__ = make_sig()
+
     def __init__(self, *args, **kwargs):
         bound_values = self.__signature__.bind(*args, **kwargs)
         for name, value in bound_values.arguments.items():
             setattr(self, name, value)
 
 # Example use
+
+
 class Stock(Structure):
     __signature__ = make_sig('name', 'shares', 'price')
+
 
 class Point(Structure):
     __signature__ = make_sig('x', 'y')
@@ -46,7 +52,3 @@ if __name__ == '__main__':
         s5 = Stock('ACME', 100, name='ACME', price=490.1)
     except TypeError as e:
         print(e)
-
-    
-
-    

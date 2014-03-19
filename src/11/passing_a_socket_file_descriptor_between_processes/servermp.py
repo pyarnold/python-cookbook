@@ -3,6 +3,7 @@ from multiprocessing.connection import Listener
 from multiprocessing.reduction import send_handle
 import socket
 
+
 def server(work_address, port):
     # Wait for the worker to connect
     work_serv = Listener(work_address, authkey=b'peekaboo')
@@ -19,7 +20,7 @@ def server(work_address, port):
         print('SERVER: Got connection from', addr)
         send_handle(worker, client.fileno(), worker_pid)
         client.close()
-    
+
 if __name__ == '__main__':
     import sys
     if len(sys.argv) != 3:

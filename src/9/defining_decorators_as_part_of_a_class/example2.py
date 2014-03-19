@@ -1,7 +1,9 @@
 # Property example
 
+
 class Person:
     first_name = property()
+
     @first_name.getter
     def first_name(self):
         return self._first_name

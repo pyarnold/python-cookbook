@@ -2,6 +2,7 @@
 import socket
 import struct
 
+
 def send_fd(sock, fd):
     '''
     Send a single file descriptor.
@@ -10,6 +11,7 @@ def send_fd(sock, fd):
                  [(socket.SOL_SOCKET, socket.SCM_RIGHTS, struct.pack('i', fd))])
     ack = sock.recv(2)
     assert ack == b'OK'
+
 
 def server(work_address, port):
     # Wait for the worker to connect
@@ -21,14 +23,14 @@ def server(work_address, port):
     # Now run a TCP/IP server and send clients to worker
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, True)
-    s.bind(('',port))
+    s.bind(('', port))
     s.listen(1)
     while True:
         client, addr = s.accept()
         print('SERVER: Got connection from', addr)
         send_fd(worker, client.fileno())
         client.close()
-    
+
 if __name__ == '__main__':
     import sys
     if len(sys.argv) != 3:

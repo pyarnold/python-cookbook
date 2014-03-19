@@ -1,5 +1,6 @@
 import logging
 
+
 def main():
     # Configure the logging system
     logging.basicConfig(

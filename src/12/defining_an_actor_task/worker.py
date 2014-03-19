@@ -1,7 +1,9 @@
 from actor import Actor
 from threading import Event
 
+
 class Result:
+
     def __init__(self):
         self._evt = Event()
         self._result = None
@@ -14,7 +16,9 @@ class Result:
         self._evt.wait()
         return self._result
 
+
 class Worker(Actor):
+
     def submit(self, func, *args, **kwargs):
         r = Result()
         self.send((func, args, kwargs, r))
@@ -33,4 +37,3 @@ if __name__ == '__main__':
     print(r.result())
     worker.close()
     worker.join()
-

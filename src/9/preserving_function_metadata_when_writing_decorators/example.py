@@ -1,6 +1,7 @@
 import time
 from functools import wraps
 
+
 def timethis(func):
     '''
     Decorator that reports the execution time.
@@ -10,13 +11,13 @@ def timethis(func):
         start = time.time()
         result = func(*args, **kwargs)
         end = time.time()
-        print(func.__name__, end-start)
+        print(func.__name__, end - start)
         return result
     return wrapper
 
 if __name__ == '__main__':
     @timethis
-    def countdown(n:int):
+    def countdown(n: int):
         '''
         Counts down
         '''

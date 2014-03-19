@@ -1,9 +1,11 @@
 # rpcserver.py
 import json
 
+
 class RPCHandler:
+
     def __init__(self):
-        self._functions = { }
+        self._functions = {}
 
     def register_function(self, func):
         self._functions[func.__name__] = func
@@ -15,16 +17,17 @@ class RPCHandler:
                 func_name, args, kwargs = json.loads(connection.recv())
                 # Run the RPC and send a response
                 try:
-                    r = self._functions[func_name](*args,**kwargs)
+                    r = self._functions[func_name](*args, **kwargs)
                     connection.send(json.dumps(r))
                 except Exception as e:
                     connection.send(json.dumps(str(e)))
         except EOFError:
-             pass
+            pass
 
 # Example use
 from multiprocessing.connection import Listener
 from threading import Thread
+
 
 def rpc_server(handler, address, authkey):
     sock = Listener(address, authkey=authkey)
@@ -35,8 +38,11 @@ def rpc_server(handler, address, authkey):
         t.start()
 
 # Some remote functions
+
+
 def add(x, y):
     return x + y
+
 
 def sub(x, y):
     return x - y

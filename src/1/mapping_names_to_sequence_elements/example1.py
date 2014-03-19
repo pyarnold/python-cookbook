@@ -4,6 +4,7 @@ from collections import namedtuple
 
 Stock = namedtuple('Stock', ['name', 'shares', 'price'])
 
+
 def compute_cost(records):
     total = 0.0
     for rec in records:
@@ -19,4 +20,3 @@ records = [
 ]
 
 print(compute_cost(records))
-

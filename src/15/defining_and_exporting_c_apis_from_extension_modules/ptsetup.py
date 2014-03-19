@@ -1,11 +1,11 @@
 # setup.py
 from distutils.core import setup, Extension
 
-setup(name="ptexample", 
+setup(name="ptexample",
       ext_modules=[
-        Extension("ptexample",
+          Extension("ptexample",
                   ["ptexample.c"],
-                  include_dirs = ['..','.'],  # May need pysample.h directory
-                  )
-        ]
-)
+              include_dirs=['..', '.'],  # May need pysample.h directory
+          )
+      ]
+      )

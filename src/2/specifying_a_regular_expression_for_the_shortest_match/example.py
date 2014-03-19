@@ -14,6 +14,3 @@ print(str_pat.findall(text))
 # (b) Regex that finds quoted strings - shortest match
 str_pat = re.compile(r'\"(.*?)\"')
 print(str_pat.findall(text))
-
-
-

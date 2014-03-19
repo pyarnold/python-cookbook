@@ -4,7 +4,9 @@
 
 import heapq
 
+
 class PriorityQueue:
+
     def __init__(self):
         self._queue = []
         self._index = 0
@@ -17,9 +19,13 @@ class PriorityQueue:
         return heapq.heappop(self._queue)[-1]
 
 # Example use
+
+
 class Item:
+
     def __init__(self, name):
         self.name = name
+
     def __repr__(self):
         return 'Item({!r})'.format(self.name)
 

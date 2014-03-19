@@ -5,6 +5,8 @@ import time
 _sentinel = object()
 
 # A thread that produces data
+
+
 def producer(out_q):
     n = 10
     while n > 0:
@@ -13,11 +15,12 @@ def producer(out_q):
         time.sleep(2)
         n -= 1
 
-
     # Put the sentinel on the queue to indicate completion
     out_q.put(_sentinel)
 
 # A thread that consumes data
+
+
 def consumer(in_q):
     while True:
         # Get some data
@@ -40,4 +43,3 @@ if __name__ == '__main__':
     t2.start()
     t1.join()
     t2.join()
-

@@ -1,11 +1,13 @@
 from actor import Actor
 
+
 class TaggedActor(Actor):
+
     def run(self):
         while True:
-             tag, *payload = self.recv()
-             getattr(self,"do_"+tag)(*payload)
-    
+            tag, *payload = self.recv()
+            getattr(self, "do_" + tag)(*payload)
+
     # Methods correponding to different message tags
     def do_A(self, x):
         print("Running A", x)
@@ -21,4 +23,3 @@ if __name__ == '__main__':
     a.send(('B', 2, 3))   # Invokes do_B(2,3)
     a.close()
     a.join()
-

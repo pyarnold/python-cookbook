@@ -3,6 +3,7 @@
 from functools import wraps
 import logging
 
+
 def logged(level, name=None, message=None):
     '''
     Add logging to a function.  level is the logging
@@ -29,9 +30,12 @@ def logged(level, name=None, message=None):
     return decorate
 
 # Example use
+
+
 @logged(logging.DEBUG)
 def add(x, y):
     return x + y
+
 
 @logged(logging.CRITICAL, 'example')
 def spam():

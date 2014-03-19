@@ -1,13 +1,17 @@
 import time
+
+
 def test(func):
     start = time.time()
     nums = range(1000000)
     for n in range(100):
         r = func(nums)
     end = time.time()
-    print(func.__name__, ':', end-start)
+    print(func.__name__, ':', end - start)
 
 import math
+
+
 def compute_roots_1(nums):
     result = []
     for n in nums:
@@ -15,12 +19,15 @@ def compute_roots_1(nums):
     return result
 
 from math import sqrt
+
+
 def compute_roots_2(nums):
     result = []
     result_append = result.append
     for n in nums:
         result_append(sqrt(n))
     return result
+
 
 def compute_roots_3(nums):
     sqrt = math.sqrt

@@ -1,13 +1,18 @@
 from functools import total_ordering
+
+
 class Room:
+
     def __init__(self, name, length, width):
         self.name = name
         self.length = length
         self.width = width
         self.square_feet = self.length * self.width
 
+
 @total_ordering
 class House:
+
     def __init__(self, name, style):
         self.name = name
         self.style = style
@@ -21,16 +26,15 @@ class House:
         self.rooms.append(room)
 
     def __str__(self):
-        return '{}: {} square foot {}'.format(self.name, 
-                                              self.living_space_footage, 
+        return '{}: {} square foot {}'.format(self.name,
+                                              self.living_space_footage,
                                               self.style)
 
     def __eq__(self, other):
         return self.living_space_footage == other.living_space_footage
 
     def __lt__(self, other):
-        return self.living_space_footage < other.living_space_footage 
-
+        return self.living_space_footage < other.living_space_footage
 
 
 # Build a few houses, and add rooms to them.
@@ -52,8 +56,9 @@ h3.add_room(Room('Office', 12, 16))
 h3.add_room(Room('Kitchen', 15, 17))
 houses = [h1, h2, h3]
 
-print("Is h1 bigger than h2?", h1 > h2) # prints True
-print("Is h2 smaller than h3?", h2 < h3) # prints True
-print("Is h2 greater than or equal to h1?", h2 >= h1) # prints False
-print("Which one is biggest?", max(houses)) # prints 'h3: 1101 square foot Split'
-print("Which is smallest?", min(houses)) # prints 'h2: 846 square foot Ranch'
+print("Is h1 bigger than h2?", h1 > h2)  # prints True
+print("Is h2 smaller than h3?", h2 < h3)  # prints True
+print("Is h2 greater than or equal to h1?", h2 >= h1)  # prints False
+# prints 'h3: 1101 square foot Split'
+print("Which one is biggest?", max(houses))
+print("Which is smallest?", min(houses))  # prints 'h2: 846 square foot Ranch'

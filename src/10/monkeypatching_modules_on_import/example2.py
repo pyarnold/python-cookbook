@@ -10,6 +10,8 @@ def logged(func):
     return wrapper
 
 # Example
+
+
 @when_imported('math')
 def add_logging(mod):
     mod.cos = logged(mod.cos)
@@ -19,4 +21,3 @@ if __name__ == '__main__':
     import math
     print(math.cos(2))
     print(math.sin(2))
-

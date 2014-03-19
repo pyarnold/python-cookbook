@@ -1,4 +1,5 @@
 class Proxy:
+
     def __init__(self, obj):
         self._obj = obj
 
@@ -15,8 +16,10 @@ class Proxy:
 
 if __name__ == '__main__':
     class A:
+
         def __init__(self, x):
             self.x = x
+
         def spam(self):
             print('A.spam')
 
@@ -27,5 +30,3 @@ if __name__ == '__main__':
     p.x = 37
     print('Should be 37:', p.x)
     print('Should be 37:', a.x)
-
-    

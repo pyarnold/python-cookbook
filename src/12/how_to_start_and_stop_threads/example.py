@@ -1,7 +1,9 @@
 from threading import Thread
 import time
 
+
 class CountdownTask:
+
     def __init__(self):
         self._running = True
 
@@ -23,4 +25,3 @@ print('About to terminate')
 c.terminate()
 t.join()
 print('Terminated')
-

@@ -1,6 +1,8 @@
 from abc import ABCMeta, abstractmethod
 
+
 class A(metaclass=ABCMeta):
+
     @property
     @abstractmethod
     def name(self):

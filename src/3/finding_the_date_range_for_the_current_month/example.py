@@ -1,6 +1,7 @@
 from datetime import datetime, date, timedelta
 import calendar
 
+
 def get_month_range(start_date=None):
     if start_date is None:
         start_date = date.today().replace(day=1)
@@ -14,6 +15,7 @@ while first_day < last_day:
     print(first_day)
     first_day += a_day
 
+
 def daterange(start, stop, step):
     while start < stop:
         yield start
@@ -24,4 +26,3 @@ for d in daterange(date(2012, 8, 1), date(2012, 8, 11), timedelta(days=1)):
 
 for d in daterange(datetime(2012, 8, 1), datetime(2012, 8, 3), timedelta(minutes=30)):
     print(d)
-

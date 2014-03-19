@@ -2,6 +2,7 @@
 
 from socket import socket, AF_INET, SOCK_STREAM
 
+
 def echo_handler(address, client_sock):
     print('Got connection from {}'.format(address))
     while True:
@@ -10,6 +11,7 @@ def echo_handler(address, client_sock):
             break
         client_sock.sendall(msg)
     client_sock.close()
+
 
 def echo_server(address, backlog=5):
     sock = socket(AF_INET, SOCK_STREAM)

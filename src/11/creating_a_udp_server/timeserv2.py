@@ -1,6 +1,7 @@
 from socket import socket, AF_INET, SOCK_DGRAM
 import time
 
+
 def time_server(address):
     sock = socket(AF_INET, SOCK_DGRAM)
     sock.bind(address)

@@ -3,6 +3,7 @@
 import hmac
 import os
 
+
 def client_authenticate(connection, secret_key):
     '''
     Authenticate client to a remote service.
@@ -14,6 +15,7 @@ def client_authenticate(connection, secret_key):
     digest = hash.digest()
     connection.send(digest)
 
+
 def server_authenticate(connection, secret_key):
     '''
     Request client authentication.
@@ -23,4 +25,4 @@ def server_authenticate(connection, secret_key):
     hash = hmac.new(secret_key, message)
     digest = hash.digest()
     response = connection.recv(len(digest))
-    return hmac.compare_digest(digest,response)
+    return hmac.compare_digest(digest, response)

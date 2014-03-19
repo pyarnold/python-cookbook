@@ -2,6 +2,8 @@ import threading
 import time
 
 # Worker thread
+
+
 def worker(n, sema):
     # Wait to be signalled
     sema.acquire()
@@ -13,7 +15,7 @@ sema = threading.Semaphore(0)
 nworkers = 10
 for n in range(nworkers):
     t = threading.Thread(target=worker, args=(n, sema,))
-    t.daemon=True
+    t.daemon = True
     t.start()
 
 print('About to release first worker')

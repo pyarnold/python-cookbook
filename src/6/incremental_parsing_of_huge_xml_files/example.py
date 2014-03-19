@@ -7,6 +7,7 @@
 
 from xml.etree.ElementTree import iterparse
 
+
 def parse_and_remove(filename, path):
     path_parts = path.split('/')
     doc = iterparse(filename, ('start', 'end'))

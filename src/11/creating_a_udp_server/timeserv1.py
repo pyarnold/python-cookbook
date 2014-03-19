@@ -1,7 +1,9 @@
 from socketserver import BaseRequestHandler, UDPServer
 import time
 
+
 class TimeHandler(BaseRequestHandler):
+
     def handle(self):
         print('Got connection from', self.client_address)
         # Get message and client socket

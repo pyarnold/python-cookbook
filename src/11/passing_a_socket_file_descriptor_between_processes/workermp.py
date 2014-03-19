@@ -5,6 +5,7 @@ from multiprocessing.reduction import recv_handle
 import os
 import socket
 
+
 def worker(server_address):
     serv = Client(server_address, authkey=b'peekaboo')
     serv.send(os.getpid())
@@ -18,7 +19,7 @@ def worker(server_address):
                     break
                 print('WORKER: RECV {!r}'.format(msg))
                 client.send(msg)
-    
+
 if __name__ == '__main__':
     import sys
     if len(sys.argv) != 2:

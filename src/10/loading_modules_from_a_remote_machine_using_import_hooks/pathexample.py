@@ -15,4 +15,3 @@ import fib
 import spam
 import grok.blah
 print(grok.blah.__file__)
-

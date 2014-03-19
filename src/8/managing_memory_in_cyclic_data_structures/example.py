@@ -1,6 +1,8 @@
 import weakref
 
+
 class Node:
+
     def __init__(self, value):
         self.value = value
         self._parent = None
@@ -32,4 +34,3 @@ if __name__ == '__main__':
     print(c1.parent)
     del root
     print(c1.parent)
-    

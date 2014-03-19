@@ -6,9 +6,10 @@ import sys
 import atexit
 import signal
 
+
 def daemonize(pidfile, *, stdin='/dev/null',
-                          stdout='/dev/null',
-                          stderr='/dev/null'):
+              stdout='/dev/null',
+              stderr='/dev/null'):
 
     if os.path.exists(pidfile):
         raise RuntimeError('Already running')
@@ -19,7 +20,7 @@ def daemonize(pidfile, *, stdin='/dev/null',
             raise SystemExit(0)   # Parent exit
     except OSError as e:
         raise RuntimeError('fork #1 failed.')
-    
+
     os.chdir('/')
     os.umask(0)
     os.setsid()
@@ -29,7 +30,7 @@ def daemonize(pidfile, *, stdin='/dev/null',
             raise SystemExit(0)
     except OSError as e:
         raise RuntimeError('fork #2 failed.')
-    
+
     # Flush I/O buffers
     sys.stdout.flush()
     sys.stderr.flush()
@@ -43,8 +44,8 @@ def daemonize(pidfile, *, stdin='/dev/null',
         os.dup2(f.fileno(), sys.stderr.fileno())
 
     # Write the PID file
-    with open(pidfile,'w') as f:
-        print(os.getpid(),file=f)
+    with open(pidfile, 'w') as f:
+        print(os.getpid(), file=f)
 
     # Arrange to have the PID file removed on exit/signal
     atexit.register(lambda: os.remove(pidfile))
@@ -54,6 +55,7 @@ def daemonize(pidfile, *, stdin='/dev/null',
         raise SystemExit(1)
 
     signal.signal(signal.SIGTERM, sigterm_handler)
+
 
 def main():
     import time
@@ -91,4 +93,3 @@ if __name__ == '__main__':
     else:
         print('Unknown command {!r}'.format(sys.argv[1]), file=sys.stderr)
         raise SystemExit(1)
-

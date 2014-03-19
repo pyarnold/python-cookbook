@@ -1,5 +1,6 @@
 from collections import deque
 
+
 def search(lines, pattern, history=5):
     previous_lines = deque(maxlen=history)
     for line in lines:
@@ -14,4 +15,4 @@ if __name__ == '__main__':
             for pline in prevlines:
                 print(pline, end='')
             print(line, end='')
-            print('-'*20)
+            print('-' * 20)
